@@ -12,7 +12,7 @@ const submit_assignment= (req, res)=> {
         cloudinaryInstance.uploader.upload("./public/assignment/"+ uuid + attach_file.name,  { resource_type: "raw" }, 
         function(error, result) {
             dbconnection.collection("assignment").updateOne({idAssignment: data.idAssignment}, {$push: {"attachment": {account: data.account, userId: data.userId, classId: data.classId, link: "http://localhost:4000/assignment/"+ uuid+attach_file.name, urlAttachment: result.secure_url, nameAssignment: attach_file.name, time_created: time_created, score: -1}}})
-            return res.json({message: "Update successfully", account: data.account, userId: data.userId, classId: data.classId, link: "http://localhost:4000/assignment/"+ uuid+attach_file.name, urlAttachment: result.secure_url, nameAssignment: attach_file.name, time_created: time_created, score: -1})
+            return res.json({message: "Update successfully", account: data.account, userId: data.userId, classId: data.classId, link: "https://class-room-server2.onrender.com/assignment/"+ uuid+attach_file.name, urlAttachment: result.secure_url, nameAssignment: attach_file.name, time_created: time_created, score: -1})
         })
     })  
 }
